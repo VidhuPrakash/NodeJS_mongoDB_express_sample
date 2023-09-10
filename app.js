@@ -1,6 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
-var MongoClient= require("mongodb");
+// var MongoClient= require("mongodb");
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -27,6 +27,7 @@ const session = require('express-session');
   var homeRouter = require('./routes/home');
   var admRouter = require("./routes/admin");
   var logoutRouter = require("./routes/logout")
+  var adminPanelRouter = require("./routes/admin-panel")
   // const connectDb = require('./config/db_connection');
   
   // connectDb();
@@ -48,7 +49,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // session
 app.use(session({
-  secret:'your secrete key',
+  secret:'secrete_key',
   resave:false,
   saveUninitialized:true
 }));
@@ -60,6 +61,7 @@ app.use('/user', usersRouter);
 app.use('/home', homeRouter);
 app.use('/admin', admRouter);
 app.use('/logout', logoutRouter);
+app.use('/admin_panel',adminPanelRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -2,6 +2,8 @@ var express =require('express');
 // const { addPersonalData } = require('../models/data');
 var router = express.Router();
 
+
+// homepage
 router.get('/',(req,res)=>{
     if(req.session.loggedIn){
     res.render('home');}

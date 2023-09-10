@@ -1,1 +1,30 @@
-{{user}}
+<h1 class="display-1 text-center text-danger">WELCOME ADMIN</h1>
+
+{{#if userRegList.length}}
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">NAME</th>
+        <th scope="col">EMAIL</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each userRegList}}
+        <tr>
+          <form action="admin/update" method="post">
+            <input type="hidden" name="_id" value="{{this._id}}">
+            <td><input class="form-control form-control-lg" name="name" value="{{this.name}}"></td>
+            <td><input class="form-control form-control-lg" name="email" value="{{this.email}}"></td>
+            <td><button type="submit" class="btn btn-outline-danger mb-2">Update</button></form>
+            <form action="admin/delete" method="post">
+              <input type="hidden" name="_id" value="{{this._id}}">
+              <button type="submit" class="btn btn-outline-dark">Delete</button>
+            </form></td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  {{!-- <p>No users found.</p> --}}
+  <h4 class="text-center">No user found   </h4>
+{{/if}}
